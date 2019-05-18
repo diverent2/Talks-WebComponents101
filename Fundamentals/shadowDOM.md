@@ -9,7 +9,7 @@
 - allows to isolate DOM fragments
 - incl. CSS **and** css selectors
 - encapsulation:
-  > like an <iframe> where the content is cut off from the rest of the document; however, when we create a shadow root, we still have total control over that part of our page, but scoped to a context.
+  > like an `<iframe>` where the content is cut off from the rest of the document; however, when we create a shadow root, we still have total control over that part of our page, but scoped to a context.
 
 ## selector scoping
 
