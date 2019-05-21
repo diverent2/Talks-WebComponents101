@@ -1,5 +1,7 @@
 # HTML templates
 
+`HTMLTemplateElement`
+
 ´<template>´
 
 Allows to reserve snippet-like html template pieces.
