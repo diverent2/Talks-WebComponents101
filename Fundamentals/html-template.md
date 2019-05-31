@@ -2,7 +2,9 @@
 
 `HTMLTemplateElement`
 
-´<template>´
+```html
+<template></template>
+```
 
 Allows to reserve snippet-like html template pieces.
 
