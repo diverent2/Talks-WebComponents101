@@ -109,61 +109,92 @@ currently recomanded way is to use css-vars
 }
 ```
 
----
+## Methods
 
-## selector scoping
+Once created all methods become part of public JavaScript API.
 
-Once created you can use all DOM methods as you would normally use on document object by using this.shadoRoot.querySelector
+select webcomponent using:
 
-light DOM selector works as usual:
+light DOM (as expected):
 `document.querySelector('selector')`
-will return DOM element `selector`
 
-`shadowRoot.querySelector('selector')` will return shadowDOM element `selector`
+shadow root children can´t be selected from document scope: `shadowRoot.querySelector('selector-inside-shadowdom')` will return `selector element.`(parent)
 
-however shadow root children can´t be selected from document scope: `shadowRoot.querySelector('selector-inside-shadowdom')` will return `selector element.`(parent)
+Reason: belongs to a different `DocumentOrShadowRoot` instance.
 
-> "For example, If we have a shadow root with a `<button>` inside of it, calling shadowRoot.querySelector('button') would return our button, but no invocation of the document’s query selector will return that element because it belongs to a different DocumentOrShadowRoot instance."
+using getters/setters will provide access to property management.
 
-Reason: they belong to a different `DocumentOrShadowRoot` instance.
+## `<slot>` for descendant
 
-## Example apply shadow DOM
+shadow root can include content from outer document (main DOM) using `<slot>`
+
+can contain user provided markup //light DOM
+
+elements inserted into shadowDOM using slots are called `distributed nodes`
+
+can be named or will be read in order
+
+### old example
+
+ex. `<select>` element inserts options by the name `<option>` and renders it into the dropdown menu.
+
+### modern example
 
 ```html
-<!--Shadow-root begin -->
-<style>
-  button {
-    color: #f9f871;
-    background: #ff6f91;
-    margin: 10px 20px;
-  }
-</style>
-<button>Custom button 😍</button>
-<!--Shadow-root end-->
+<image-gallery>
+  <img src="foo.jpg" slot="image" />
+  <img src="bar.jpg" slot="image" />
+</image-gallery>
+
+<div id="container">
+  <div class="images">
+    <slot name="image"></slot>
+  </div>
+</div>
 ```
 
 ```html
-<button id="shadowButton">Default Button 🙄</button>
-<button>Default Button 🙄</button>
-
-<script>
-  const shadowRoot = document
-    .getElementById('shadowButton')
-    .attachShadow({ mode: 'open' });
-  shadowRoot.innerHTML = `
-  <!--Shadow-root begin -->
-    <style>
-        button {
-        color: #f9f871;
-        background: #ff6f91;
-        margin: 10px 20px;
-        }
-    </style>
-    <button>Custom button 😍</button>
-  <!--Shadow-root end-->`;
-</script>
+<div id="container">
+  <div class="images">
+    <slot name="image">
+      <img src="foo.jpg" slot="image" />
+      <img src="bar.jpg" slot="image" />
+    </slot>
+  </div>
+</div>
 ```
 
-## But wait there´s more
+### styling `slots`
 
-- shadow root can include content from outer document (main DOM) using `<slot>`
+will keep styling from before.
+
+select top level:
+
+```css
+::slotted(img) {
+  float: left;
+}
+```
+
+selecting something deeper ex. `::slotted(section img)` **won´t work**
+
+compare to `host`
+
+### interaction with slots
+
+`slot.assignedNodes()` find element in slot
+
+`element.assignedSlot()` find slot of element
+
+include fallback content `slot.assignedNodes({flatten: true})`
+
+event: `slotchange` detect add/removal (no subnodes!)
+
+```js
+slot.addEventListener('slotchange', e => {
+  const changedSlot = e.target;
+  console.log(changedSlot.assignedNodes());
+});
+```
+
+! chrome fires when first inserted, FF and Safari do not!
