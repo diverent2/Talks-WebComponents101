@@ -2,6 +2,8 @@
 
 ## Sources
 
+[Lessons Learned, making our app with Web Components](https://medium.com/samsung-internet-dev/lessons-learned-making-our-app-with-web-components-bf55379cfcda)
+
 [Medium - building app with Web Components: Ada Rose Cannon](https://medium.com/samsung-internet-dev/lessons-learned-making-our-app-with-web-components-bf55379cfcda)
 
 [Web Components and Frameworks: Danny Moerkerke](https://www.dannymoerkerke.com/blog/web-components-will-replace-your-frontend-framework)
