@@ -11,6 +11,11 @@ Allows to reserve snippet-like html template pieces.
 ## traits
 
 - won´t be rendered until used.
+- returns content as `DocumentFragment`
+- hidden by default
+- initially only parsed to ensure its contents are valid
+- no js execution
+- possible to have multiple to replace them
 - can be initated by a script.
 
 ## Examples

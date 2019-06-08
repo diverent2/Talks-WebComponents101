@@ -38,13 +38,15 @@ dial.addEventListener('some-dial-event', function(e) {
 
 ## attributes vs properties
 
-- attributes are used to handle initial state of an element.
+- attribute value does not change on input
+- property value does
 
 > "In theory it would be possible to pass complex values to attributes by serializing them, but this could hurt performance and since you have access to the component’s methods you won’t need this. If you do however want to have databinding through attributes as provided by frameworks like React and Angular, you could have a look at Polymer."
 
 ### Attributes
 
 - default values / initial state
+- attributes are used to handle initial state of an element.
 
 ```html
 <input value="default" />
