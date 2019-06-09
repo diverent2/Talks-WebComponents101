@@ -36,7 +36,7 @@ const txt_template = document.getElementById('textTemplate');
 
 const singleTextInstance = document.importNode(txt_template.content, true);
 
-txt_template.querySelector('.text').innerHTML = '✨magical✨';
+singleTextInstance.querySelector('.text').innerHTML = '✨magical✨';
 
 document.appendChild(txt_template);
 ```
