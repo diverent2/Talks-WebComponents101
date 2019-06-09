@@ -41,6 +41,7 @@ constructor -> attributeChangedCallback -> connectedCallback
 ```js
 class MyElement extends HTMLElement {
   constructor() {
+    super();
     const content = `
       <style>...</style>
 
