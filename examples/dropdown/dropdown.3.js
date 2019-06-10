@@ -3,17 +3,24 @@ class AwesomeDropdown extends HTMLElement {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    const template = document.getElementById('dropdownTemplate').content;
+
+    const template = document.getElementById('dropdownTemplate');
     shadowRoot.appendChild(template.cloneNode(true));
+  }
+
+  connectedCallback() {
+    this.open = this.open;
+
+    const templateInstance = this.shadowRoot
+      .querySelector('#dropdownTemplate')
+      .content.cloneNode(true);
+    this.shadowRoot.appendChild(templateInstance);
 
     this.titleElementBox = this.shadowRoot.querySelector(
       '.magicDropdown__title'
     );
     this.titleText = this.shadowRoot.querySelector('.magicDropdownTitle__text');
-  }
 
-  connectedCallback() {
-    this.open = this.open;
     this.titleElementBox.addEventListener('click', () => {
       this.open = !this.open;
     });
@@ -21,17 +28,14 @@ class AwesomeDropdown extends HTMLElement {
   }
 
   get open() {
-    console.log('get');
     return this.hasAttribute('open');
   }
 
   set open(bool) {
     if (bool) {
       this.setAttribute('open', '');
-      console.log('add');
     } else {
       this.removeAttribute('open');
-      console.log('remo');
     }
   }
 
