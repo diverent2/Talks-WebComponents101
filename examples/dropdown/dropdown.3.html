@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./dropdown.3.js"></script>
+    <title>Custom Elements</title>
+  </head>
+  <body>
+    <template id="dropdownTemplate">
+      <style>
+        :host {
+          --primary: #f2e5be;
+          --secondary: #cc5c27;
+
+          --titleSize: 1.5rem;
+          --padding: 24px;
+          --margin: 24px;
+          --triangleColor: var(--primary);
+          --color: var(--primary);
+          --backgroundColor: var(--secondary);
+        }
+
+        .magicDropdown {
+          display: block;
+          max-width: 100%;
+          background-color: var(--backgroundColor);
+          color: var(--color);
+          margin: var(--margin) 0;
+        }
+
+        .magicDropdown__title {
+          padding: var(--padding);
+
+          display: flex;
+          align-items: first baseline;
+
+          cursor: pointer;
+          user-select: none;
+        }
+
+        .magicDropdownTitle__text {
+          font-size: var(--titleSize);
+          text-transform: uppercase;
+          margin: 0;
+        }
+
+        .magicDropdownTitle__icon {
+          width: 0;
+          height: 0;
+          margin-right: calc(var(--padding) / 2);
+          transition: transform 0.3s;
+
+          border-style: solid;
+          border-width: 15px 15px 0 15px;
+          border-color: var(--triangleColor) transparent transparent transparent;
+        }
+
+        :host([open]) .magicDropdownTitle__icon {
+          transform: rotate(-90deg);
+        }
+
+        .magicDropdown__content {
+          padding: 0 var(--padding);
+          box-sizing: border-box;
+          overflow: hidden;
+          height: 0;
+          transition: all 0.3s;
+        }
+        :host([open]) .magicDropdown__content {
+          padding: var(--padding);
+          height: auto;
+        }
+      </style>
+      <div class="magicDropdown">
+        <div class="magicDropdown__title">
+          <div class="magicDropdownTitle__icon"></div>
+          <p class="magicDropdownTitle__text">Dropdown title</p>
+        </div>
+        <div class="magicDropdown__content">
+          <slot name="magicDropdown_content"></slot>
+        </div>
+      </div>
+    </template>
+    <h1>Custom Elements</h1>
+    <awesome-dropdown title="test">
+      <div slot="magicDropdown_content">
+        <p>Dropwown content is iserted by the use of a slot</p>
+        <p>This can basically be EVERYTHING NOW ❤️</p>
+      </div>
+    </awesome-dropdown>
+  </body>
+</html>
