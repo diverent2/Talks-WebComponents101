@@ -1,65 +1,79 @@
-<template id="dropdownTemplate">
-  <style>
-    .magicDropdown {
-      --primary: #f2e5be;
-      --secondary: #cc5c27;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML Template</title>
+  </head>
+  <body>
+    <template id="dropdownTemplate">
+      <style>
+        .magicDropdown {
+          --primary: #f2e5be;
+          --secondary: #cc5c27;
 
-      --titleSize: 1.5rem;
-      --padding: 24px;
-      --triangleColor: var(--primary);
-      --color: var(--primary);
-      --backgroundColor: var(--secondary);
+          --titleSize: 1.5rem;
+          --padding: 24px;
+          --triangleColor: var(--primary);
+          --color: var(--primary);
+          --backgroundColor: var(--secondary);
 
-      display: block;
-      max-width: 100%;
-      background-color: var(--backgroundColor);
-      color: var(--color);
-    }
+          display: block;
+          max-width: 100%;
+          background-color: var(--backgroundColor);
+          color: var(--color);
+        }
 
-    .magicDropdown__title {
-      padding: var(--padding);
-      display: flex;
-      cursor: pointer;
-    }
+        .magicDropdown__title {
+          padding: var(--padding);
+          display: flex;
+          cursor: pointer;
+        }
 
-    .magicDropdownTitle__text {
-      font-size: var(--titleSize);
-      text-transform: uppercase;
-      margin: 0;
-    }
+        .magicDropdownTitle__text {
+          font-size: var(--titleSize);
+          text-transform: uppercase;
+          margin: 0;
+        }
 
-    .magicDropdownTitle__icon {
-      width: 0;
-      height: 0;
-      margin-right: calc(var(--padding) / 2);
+        .magicDropdownTitle__icon {
+          width: 0;
+          height: 0;
+          margin-right: calc(var(--padding) / 2);
 
-      border-style: solid;
-      border-width: 25px 25px 0 25px;
-      border-color: var(--triangleColor) transparent transparent transparent;
-    }
+          border-style: solid;
+          border-width: 25px 25px 0 25px;
+          border-color: var(--triangleColor) transparent transparent transparent;
+        }
 
-    .magicDropdown__content {
-      padding: var(--padding);
-    }
-  </style>
-  <div class="magicDropdown">
-    <div class="magicDropdown__title">
-      <div class="magicDropdownTitle__icon"></div>
-      <p class="magicDropdownTitle__text">Dropdown title</p>
-    </div>
-    <div class="magicDropdown__content">
-      <p>*Dropdown content goes here*</p>
-    </div>
-  </div>
-</template>
+        .magicDropdown__content {
+          padding: var(--padding);
+        }
+      </style>
+      <div class="magicDropdown">
+        <div class="magicDropdown__title">
+          <div class="magicDropdownTitle__icon"></div>
+          <p class="magicDropdownTitle__text">Dropdown title</p>
+        </div>
+        <div class="magicDropdown__content">
+          <p>*Dropdown content goes here*</p>
+        </div>
+      </div>
+    </template>
 
-<h1>Template</h1>
+    <h1>HTML Template</h1>
 
-<script>
-  const template = document.getElementById('dropdownTemplate');
+    <script>
+      const template = document.getElementById('dropdownTemplate');
 
-  const singleTemplateInstance = document.importNode(template.content, true);
-  console.log(singleTemplateInstance);
+      const singleTemplateInstance = document.importNode(
+        template.content,
+        true
+      );
+      console.log(singleTemplateInstance);
 
-  document.body.appendChild(singleTemplateInstance);
-</script>
+      document.body.appendChild(singleTemplateInstance);
+    </script>
+  </body>
+</html>
